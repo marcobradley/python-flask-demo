@@ -14,5 +14,4 @@ build/
 .pytest_cache/
 .coverage
 htmlcov/
-k8s/
 README.md

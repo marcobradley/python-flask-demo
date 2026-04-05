@@ -2,6 +2,8 @@
 
 A containerized Python Flask web application designed to run on a [k3s](https://k3s.io/) Kubernetes cluster.
 
+> **Kubernetes manifests** are managed separately in [marcobradley/local-kubernetes-cluster-demo](https://github.com/marcobradley/local-kubernetes-cluster-demo).
+
 ## Project structure
 
 ```
@@ -9,11 +11,7 @@ A containerized Python Flask web application designed to run on a [k3s](https://
 ├── app.py              # Flask application
 ├── requirements.txt    # Python dependencies
 ├── Dockerfile          # Multi-stage Docker image
-├── .dockerignore
-└── k8s/
-    ├── deployment.yaml # Kubernetes Deployment (2 replicas)
-    ├── service.yaml    # ClusterIP Service
-    └── ingress.yaml    # Traefik Ingress (k3s default)
+└── .dockerignore
 ```
 
 ## Endpoints
@@ -45,40 +43,12 @@ docker run -p 5000:5000 flask-demo:latest
 
 ## Deploy to k3s
 
-### 1. Build and load the image
+Kubernetes manifests (Deployment, Service, Ingress) are maintained in the [local-kubernetes-cluster-demo](https://github.com/marcobradley/local-kubernetes-cluster-demo) repository. See that repo for deployment instructions.
 
-On each k3s node (or via a registry), make the image available:
+Build and push (or import) the Docker image so it is available to your cluster nodes:
 
 ```bash
 docker build -t flask-demo:latest .
 # Import directly into k3s containerd (no registry needed):
 docker save flask-demo:latest | sudo k3s ctr images import -
-```
-
-### 2. Apply the manifests
-
-```bash
-kubectl apply -f k8s/
-```
-
-### 3. Verify the deployment
-
-```bash
-kubectl get pods
-kubectl get svc
-kubectl get ingress
-```
-
-### 4. Access the app
-
-Add the following entry to `/etc/hosts` (replace `<NODE_IP>` with your k3s node IP):
-
-```
-<NODE_IP>  flask-demo.local
-```
-
-Then open <http://flask-demo.local> in your browser or run:
-
-```bash
-curl http://flask-demo.local
 ```

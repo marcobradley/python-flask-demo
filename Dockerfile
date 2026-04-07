@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir --upgrade pip \
 FROM python:3.12-slim
 
 # Create a non-root user for security
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser \
+    && mkdir -p /tmp && chmod 1777 /tmp
 
 WORKDIR /app
 
@@ -23,6 +24,8 @@ ENV PYTHONPATH=/app/deps
 
 # Copy application source
 COPY app.py .
+COPY templates/ templates/
+COPY static/ static/
 
 USER appuser
 

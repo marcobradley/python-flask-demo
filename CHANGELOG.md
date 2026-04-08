@@ -1,8 +1,9 @@
-## [0.0.0-development](https://github.com/marcobradley/python-flask-demo/compare/v1.0.1...v0.0.0-development) (2026-04-06)
+## [0.0.0-development](https://github.com/marcobradley/python-flask-demo/compare/v1.1.0...v0.0.0-development) (2026-04-07)
 
 ### Features
 
 * adding github actions and an AI agent for the repo ([e1164fc](https://github.com/marcobradley/python-flask-demo/commit/e1164fc604885ab4b3cf2493d82dfef1bc279bad))
+* adding html index page and css ([0e797b6](https://github.com/marcobradley/python-flask-demo/commit/0e797b62138303e7acb5dc1b774cd63d4fa23183))
 
 ### Bug Fixes
 

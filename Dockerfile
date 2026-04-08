@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 FROM python:3.12-slim
 
 # Create a non-root user for security
-RUN mkdir /tmp && chmod 1777 /tmp \
+RUN chmod 1777 /tmp \
     && addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 
 WORKDIR /app
